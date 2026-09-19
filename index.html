@@ -3,138 +3,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CaronSoftware | خانه</title>
+
+    <title>AmirFazel Ehtesham</title>
+
     <link rel="icon" href="csoft.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Lalezar&display=swap" rel="stylesheet">
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary-red: #d32f2f;
-            --dark-bg: #121212;
-            --text-white: #ffffff;
+            --black: #070707;
+            --dark: #0d0d0d;
+            --card: #121212;
+            --card-light: #181818;
+            --border: #292929;
+            --border-light: #383838;
+            --white: #f4f4f4;
+            --gray: #909090;
+            --gold: #d4a72c;
+
+            /* TBFM */
+            --tbfm-gold: #ffd21c;
+            --tbfm-gold2: #ffb800;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-white);
             margin: 0;
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 50% -10%,
+                    #292929 0%,
+                    #111111 30%,
+                    #070707 65%
+                );
+
+            color: var(--white);
+            font-family: "Lalezar", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .08;
+
+            background-image:
+                linear-gradient(#fff 1px, transparent 1px),
+                linear-gradient(90deg, #fff 1px, transparent 1px);
+
+            background-size: 45px 45px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 80%
+            );
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* Header */
+
+        header {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            padding: 28px 7%;
+
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh; /* Use min-height to allow content to push footer down */
-            padding-bottom: 60px; /* Add padding to body to prevent content from being hidden by the footer */
-            box-sizing: border-box; /* Include padding in height calculation */
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            letter-spacing: .5px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #777;
+            font-size: .85rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+            background: #777;
+
+            box-shadow: 0 0 12px #777;
+        }
+
+        /* Main */
+
+        main {
+            position: relative;
+            z-index: 1;
+
+            width: 100%;
+            max-width: 1050px;
+
+            margin: auto;
+            padding: 65px 22px 100px;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .small-title {
+            color: #777;
+            font-size: 1rem;
         }
 
         h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-red);
+            margin: 12px 0 0;
+
+            font-size: clamp(3.2rem, 8vw, 6.5rem);
+            line-height: 1;
+
+            color: #fff;
+
+            text-shadow:
+                0 10px 40px rgba(255,255,255,.07);
         }
 
-        p {
+        .description {
+            max-width: 600px;
+
+            margin: 28px auto 0;
+
+            color: #929292;
             font-size: 1.2rem;
-            margin-bottom: 2rem;
+            line-height: 2;
         }
 
-        .cta-button {
-            background-color: var(--primary-red);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.3s ease;
+        /* Projects */
+
+        .projects {
+            margin-top: 85px;
         }
 
-        .cta-button:hover {
-            background-color: #b71c1c;
-        }
-
-        .header-controls {
-            position: absolute;
-            top: 20px;
-            left: 20px; /* Position on the left for LTR languages, or adjust if needed for RTL */
-            display: flex;
-            gap: 10px;
-        }
-
-        .lang-switch-button {
-            background: none;
-            border: 1px solid var(--text-white);
-            color: var(--text-white);
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease, color 0.3s ease;
-        }
-
-        .lang-switch-button:hover {
-            background: var(--primary-red);
-            border-color: var(--primary-red);
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(18, 18, 18, 0.8); /* Slightly transparent dark background */
-            color: var(--text-white);
+        .section-title {
             text-align: center;
-            padding: 15px 0;
-            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+
+        .project-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 20px;
+        }
+
+        /* Project card */
+
+        .project-card {
+            position: relative;
+
+            min-height: 290px;
+            padding: 26px;
+
+            display: flex;
+            flex-direction: column;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(32,32,32,.92),
+                    rgba(12,12,12,.96)
+                );
+
+            border: 1px solid var(--border);
+            border-radius: 23px;
+
+            box-shadow:
+                0 20px 55px rgba(0,0,0,.55),
+                inset 0 1px rgba(255,255,255,.035);
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+
+            border-color: var(--border-light);
+
+            box-shadow:
+                0 28px 70px rgba(0,0,0,.72),
+                inset 0 1px rgba(255,255,255,.06);
+        }
+
+        /* =========================================
+           TBFM CARD
+           ========================================= */
+
+        .tbfm-card {
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(255,210,28,.07),
+                    transparent 38%
+                ),
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(255,184,0,.045),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    145deg,
+                    rgba(28,28,28,.95),
+                    rgba(9,9,9,.98)
+                );
+
+            border-color: rgba(255,210,28,.20);
+
+            box-shadow:
+                0 20px 55px rgba(0,0,0,.55),
+                0 0 35px rgba(255,210,28,.035),
+                inset 0 1px rgba(255,210,28,.055);
+
+            overflow: hidden;
+        }
+
+        .tbfm-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            right: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--tbfm-gold),
+                    transparent
+                );
+
+            opacity: .7;
+        }
+
+        .tbfm-card:hover {
+            border-color: rgba(255,210,28,.42);
+
+            box-shadow:
+                0 28px 70px rgba(0,0,0,.72),
+                0 0 45px rgba(255,210,28,.08),
+                inset 0 1px rgba(255,210,28,.08);
+        }
+
+        /* Project icons */
+
+        .project-icon {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(255,255,255,.055);
+            border: 1px solid #303030;
+
+            border-radius: 17px;
+
+            margin-bottom: 22px;
+
+            font-size: 1.35rem;
+            font-family: "Lalezar", sans-serif;
+
+            overflow: hidden;
+        }
+
+        /* TBFM icon */
+
+        .tbfm-icon {
+            padding: 0;
+
+            background:
+                rgba(255,210,28,.08);
+
+            border:
+                1px solid rgba(255,210,28,.25);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,.35),
+                0 0 20px rgba(255,210,28,.045);
+        }
+
+        .tbfm-icon img {
+            width: 100%;
+            height: 100%;
+
+            display: block;
+
+            object-fit: cover;
+
+            border-radius: 14px;
+        }
+
+        /* TBFM title */
+
+        .tbfm-card h2 {
+            color: var(--tbfm-gold);
+
+            text-shadow:
+                0 0 20px rgba(255,210,28,.08);
+        }
+
+        .tbfm-card p {
+            color: #a9a9a9;
+        }
+
+        /* TBFM button */
+
+        .tbfm-link {
+            color: #111;
+
+            background:
+                var(--tbfm-gold);
+
+            border:
+                1px solid var(--tbfm-gold);
+
+            box-shadow:
+                0 7px 20px rgba(255,210,28,.08);
+        }
+
+        .tbfm-link:hover {
+            background:
+                var(--tbfm-gold2);
+
+            border-color:
+                var(--tbfm-gold2);
+
+            transform:
+                translateY(-1px) scale(1.02);
+        }
+
+        .vgs-icon {
+            font-family: "Dancing Script", cursive;
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: #fff;
+        }
+
+        .hp-icon {
+            font-family: "Lalezar", sans-serif;
+            font-size: 1.55rem;
+            color: var(--gold);
+
+            text-shadow:
+                0 0 18px rgba(212,167,44,.2);
+        }
+
+        /* Text */
+
+        .project-card h2 {
+            margin: 0 0 8px;
+
+            font-size: 1.7rem;
+            line-height: 1.2;
+        }
+
+        .project-card p {
+            margin: 0;
+
+            color: #808080;
+            font-size: .98rem;
+            line-height: 1.9;
+        }
+
+        /* Button */
+
+        .project-link {
+            margin-top: auto;
+            padding-top: 25px;
+
+            display: block;
+
+            text-decoration: none;
+            text-align: center;
+
+            color: #111;
+            background: #eee;
+
+            border-radius: 13px;
+
+            padding: 12px 18px;
+
+            font-size: 1rem;
+
+            transition:
+                background .25s ease,
+                transform .25s ease;
+        }
+
+        .project-link:hover {
+            background: #fff;
+            transform: scale(1.02);
+        }
+
+        /* HPanel */
+
+        .hpanel-card {
+            border-color: rgba(212,167,44,.18);
+        }
+
+        .hpanel-card:hover {
+            border-color: rgba(212,167,44,.38);
+        }
+
+        .coming-soon {
+            position: absolute;
+
+            top: 22px;
+            left: 22px;
+
+            padding: 5px 11px;
+
+            border-radius: 999px;
+
+            background: rgba(212,167,44,.1);
+            border: 1px solid rgba(212,167,44,.25);
+
+            color: var(--gold);
+
+            font-size: .72rem;
+        }
+
+        .disabled-link {
+            background: #1d1d1d;
+            color: #666;
+
+            cursor: default;
+            pointer-events: none;
+
+            border: 1px solid #292929;
+        }
+
+        /* Footer */
+
+        footer {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+
+            border-top: 1px solid #1b1b1b;
+
+            padding: 22px;
+
+            text-align: center;
+
+            color: #505050;
+            font-size: .82rem;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 22px 20px;
+            }
+
+            .logo {
+                font-size: 1.05rem;
+            }
+
+            .status {
+                font-size: .72rem;
+            }
+
+            main {
+                padding: 55px 17px 80px;
+            }
+
+            h1 {
+                font-size: 3.4rem;
+            }
+
+            .description {
+                font-size: 1.05rem;
+            }
+
+            .projects {
+                margin-top: 65px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                min-height: 270px;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="header-controls">
-        <button class="lang-switch-button">English</button>
-    </div>
+    <header>
+        <div class="logo">
+            AmirFazel Ehtesham
+        </div>
 
-    <h1>CaronSoftware</h1>
-    <p>ابزارهایی برای آینده. آخرین پروژه ما را ببینید.</p>
-    
-    <a href="TBFM" class="cta-button">دانلود TBFM</a>
+        <div class="status">
+            <span class="status-dot"></span>
+            در حال ساخت
+        </div>
+    </header>
 
-    <footer class="footer">
-        © 2026 CaronSoftware. تمامی حقوق محفوظ است.
+    <main>
+
+        <section class="hero">
+
+            <span class="small-title">
+                صفحه شخصی
+            </span>
+
+            <h1>
+                AmirFazel Ehtesham
+            </h1>
+
+            <p class="description">
+                پروژه‌ها، ایده‌ها و چیزهایی که می‌سازم.
+            </p>
+
+        </section>
+
+
+        <section class="projects">
+
+            <div class="section-title">
+                پروژه‌ها
+            </div>
+
+
+            <div class="project-grid">
+
+
+                <!-- TBFM -->
+
+                <article class="project-card tbfm-card">
+
+                    <div class="project-icon tbfm-icon">
+                        <img
+                            src="TBFM.png"
+                            alt="TBFM"
+                        >
+                    </div>
+
+                    <h2>
+                        TBFM
+                    </h2>
+
+                    <p>
+                        مشاهده و استفاده از پروژه TBFM
+                    </p>
+
+                    <a
+                        href="TBFM"
+                        class="project-link tbfm-link"
+                    >
+                        ورود به TBFM
+                    </a>
+
+                </article>
+
+
+                <!-- Verified GIF Studio -->
+
+                <article class="project-card">
+
+                    <div class="project-icon vgs-icon">
+                        VGS
+                    </div>
+
+                    <h2>
+                        Verified GIF Studio
+                    </h2>
+
+                    <p>
+                        ساخت و ویرایش ویدیو و تبدیل آن به WebM
+                    </p>
+
+                    <a
+                        href="https://VerifiedGIFStudio.github.io"
+                        class="project-link"
+                    >
+                        ورود به Verified GIF Studio
+                    </a>
+
+                </article>
+
+
+                <!-- HPanel -->
+
+                <article class="project-card hpanel-card">
+
+                    <span class="coming-soon">
+                        به‌زودی
+                    </span>
+
+                    <div class="project-icon hp-icon">
+                        HP
+                    </div>
+
+                    <h2>
+                        HPanel
+                    </h2>
+
+                    <p>
+                        مجموعه‌ای از ابزارها و داشبوردهای مدیریت HPanel
+                    </p>
+
+                    <div class="project-link disabled-link">
+                        به‌زودی
+                    </div>
+
+                </article>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        © 2026 AmirFazel Ehtesham
     </footer>
 
-    <script>
-        // Basic JavaScript for language switching - this would need more logic for actual content change
-        const langSwitchButton = document.querySelector('.lang-switch-button');
-        const mainHeading = document.querySelector('h1');
-        const mainParagraph = document.querySelector('p');
-        const tbfmButton = document.querySelector('.cta-button');
-        const footerText = document.querySelector('.footer');
-
-        let isPersian = true;
-
-        langSwitchButton.addEventListener('click', () => {
-            if (isPersian) {
-                // Switch to English
-                mainHeading.textContent = 'CaronSoftware';
-                mainParagraph.textContent = 'Developing tools for the future. Check out our latest project.';
-                tbfmButton.textContent = 'Download TBFM';
-                footerText.textContent = '© 2024 CaronSoftware. All rights reserved.';
-                document.documentElement.lang = 'en'; // Update HTML lang attribute
-                document.documentElement.dir = 'ltr'; // Set direction to LTR for English
-                langSwitchButton.textContent = 'فارسی';
-            } else {
-                // Switch to Persian
-                mainHeading.textContent = 'CaronSoftware'; // Keep it consistent or change if needed
-                mainParagraph.textContent = 'ابزارهایی برای آینده. آخرین پروژه ما را ببینید.';
-                tbfmButton.textContent = 'دانلود TBFM';
-                footerText.textContent = '© 2024 CaronSoftware. تمامی حقوق محفوظ است.';
-                document.documentElement.lang = 'fa'; // Update HTML lang attribute
-                document.documentElement.dir = 'rtl'; // Set direction to RTL for Persian
-                langSwitchButton.textContent = 'English';
-            }
-            isPersian = !isPersian;
-        });
-    </script>
-
 </body>
-</html>
+    </html>
